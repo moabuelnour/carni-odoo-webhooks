@@ -6,6 +6,7 @@ import { connect } from "./db/mongodb";
 import rateLimit from "express-rate-limit";
 
 const app = express();
+app.set("trust proxy", "127.0.0.1");
 app.use(
   rateLimit({
     windowMs: 15 * 60 * 1000,
