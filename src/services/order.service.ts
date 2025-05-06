@@ -5,7 +5,7 @@ import { findOrderById, saveOrder } from "../models/order.model";
 
 export async function processOrderUpdate(order: any) {
   const orderId = order.id;
-  console.log(orderId);
+  console.log("Recieved Order: " + orderId);
   const previousOrder = await findOrderById(orderId);
   const changes = detectChanges(previousOrder, order);
   await saveOrder(order);
