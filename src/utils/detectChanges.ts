@@ -7,7 +7,8 @@ export function detectChanges(
   const changes: string[] = [];
 
   if (!previousOrder) {
-    return ["new_order"];
+    // return ["new_order"];
+    return [];
   }
 
   // Compare line items

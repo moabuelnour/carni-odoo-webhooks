@@ -10,7 +10,7 @@ export async function processOrderUpdate(order: any) {
   const changes = detectChanges(previousOrder, order);
   await saveOrder(order);
   if (changes.length > 0) {
-    await axios.post(config.downstreamUrl, { order, changes });
+    await axios.post(config.downstreamUrl, order);
     console.log(
       `Forwarded order ${orderId} with changes: ${changes.join(", ")}`,
     );
