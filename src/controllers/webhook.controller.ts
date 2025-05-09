@@ -8,7 +8,6 @@ export async function handleOrderUpdate(
 ): Promise<void> {
   const order: ShopifyOrder = req.body;
   try {
-    console.log(order);
     await OrderService.processOrderUpdate(order);
     res.status(200).send("Webhook processed");
   } catch (error) {
