@@ -3,6 +3,7 @@ export interface ShopifyLineItem {
   variant_id: number | null;
   title: string;
   quantity: number;
+  current_quantity: number;
   sku: string;
   variant_title: string | null;
   vendor: string | null;

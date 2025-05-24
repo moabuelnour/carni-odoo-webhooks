@@ -46,10 +46,10 @@ function areLineItemsEqual(
 
   // Create comparison keys for all items
   const prevKeys = prevItems.map((item) =>
-    `${item.id}-${item.variant_id}-${item.quantity}`
+    `${item.id}-${item.variant_id}-${item.current_quantity}`
   );
   const currKeys = currItems.map((item) =>
-    `${item.id}-${item.variant_id}-${item.quantity}`
+    `${item.id}-${item.variant_id}-${item.current_quantity}`
   );
   console.log(prevItems);
   console.log(currItems);
