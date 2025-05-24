@@ -51,8 +51,6 @@ function areLineItemsEqual(
   const currKeys = currItems.map((item) =>
     `${item.id}-${item.variant_id}-${item.current_quantity}`
   );
-  console.log(prevItems);
-  console.log(currItems);
 
   // Compare sorted arrays to be order-independent
   return JSON.stringify(prevKeys.sort()) === JSON.stringify(currKeys.sort());
