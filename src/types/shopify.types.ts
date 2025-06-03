@@ -54,6 +54,7 @@ export interface ShopifyOrder {
   total_tax: string;
   taxes_included: boolean;
   currency: string;
+  note_attributes: NoteAttribute[];
   financial_status: string;
   fulfillment_status: string | null;
   line_items: ShopifyLineItem[];
@@ -73,4 +74,9 @@ export interface ShopifyOrder {
     }[];
   }[];
   // Add any other order properties you need
+}
+
+export interface NoteAttribute {
+  name: string;
+  value: string;
 }

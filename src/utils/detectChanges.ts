@@ -1,4 +1,8 @@
-import { ShopifyLineItem, ShopifyOrder } from "../types/shopify.types";
+import {
+  NoteAttribute,
+  ShopifyLineItem,
+  ShopifyOrder,
+} from "../types/shopify.types";
 
 export function detectChanges(
   previousOrder: ShopifyOrder | null,
@@ -24,6 +28,15 @@ export function detectChanges(
   // Compare fulfillment status
   if (previousOrder.fulfillment_status !== currentOrder.fulfillment_status) {
     changes.push("fulfillment_status");
+  }
+
+  if (
+    !areNoteAttributesEqual(
+      previousOrder.note_attributes,
+      currentOrder.note_attributes,
+    )
+  ) {
+    changes.push("note_attributes");
   }
 
   // Compare notes (handle null/undefined cases)
@@ -54,4 +67,28 @@ function areLineItemsEqual(
 
   // Compare sorted arrays to be order-independent
   return JSON.stringify(prevKeys.sort()) === JSON.stringify(currKeys.sort());
+}
+
+function areNoteAttributesEqual(
+  a: NoteAttribute[] = [],
+  b: NoteAttribute[] = [],
+): boolean {
+  if (a.length !== b.length) return false;
+
+  const sortByName = (arr: NoteAttribute[]) =>
+    [...arr].sort((x, y) => x.name.localeCompare(y.name));
+
+  const sortedA = sortByName(a);
+  const sortedB = sortByName(b);
+
+  for (let i = 0; i < sortedA.length; i++) {
+    if (
+      sortedA[i].name !== sortedB[i].name ||
+      sortedA[i].value !== sortedB[i].value
+    ) {
+      return false;
+    }
+  }
+
+  return true;
 }
